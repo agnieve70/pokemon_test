@@ -5,7 +5,7 @@ module.exports = (phase, {defaultConfig}) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       env: {
-        env_type: "server",
+        env_type: "local",
         mongodb_username: "agnieve0513",
         mongodb_password: "Evien05131997",
         mongodb_clustername: "cluster0.h7lt8",
