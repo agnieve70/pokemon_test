@@ -107,7 +107,7 @@ export default function TeamsPage(props) {
                                         </Link>
                                     </div>
                                 );
-                            }) : <div className={'h-[36rem]'}>
+                            }) : <div className={''}>
                                 <p className={'text-white m-20'}>No Pokemon available</p>
                             </div>
                         }
