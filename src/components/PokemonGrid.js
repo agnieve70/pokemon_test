@@ -15,6 +15,7 @@ export default function PokemonGrid(props) {
 
                         const result = favorites?.find((favorite) => favorite.name === pokemon.name);
                         console.log(result);
+
                         return (
                             <PokemonCard
                                 key={index}

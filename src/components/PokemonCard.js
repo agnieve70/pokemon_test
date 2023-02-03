@@ -35,11 +35,11 @@ export default function PokemonCard(props) {
             {
                 atomUser && Object.keys(atomUser).length > 0 ? <button onClick={addRemoveHandler}>
                     <StarIcon
-                        className={`h-8 hover:h-9 hover:w-9 w-8 ${Object.keys(fav).length > 0 ? 'text-yellow-300' : 'text-slate-300'}  absolute top-2 right-2 z-20`}/>
+                        className={`h-8 hover:h-9 hover:w-9 w-8 ${Object.keys(isFavorite).length > 0 || Object.keys(fav).length > 0 ? 'text-yellow-300' : 'text-slate-300'}  absolute top-2 right-2 z-20`}/>
                 </button> : null
             }
             <Link
-                href={`/pokemon/${name} ${fav ? '?favorite=true' : ''}`}>
+                href={`/pokemon/${name} ${Object.keys(isFavorite).length > 0 || Object.keys(fav).length > 0 ? '?favorite=true' : ''}`}>
 
 
                 <div
