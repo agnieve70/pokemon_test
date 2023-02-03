@@ -32,7 +32,7 @@ module.exports = (phase, {defaultConfig}) => {
       mongodb_clustername: "cluster0.h7lt8",
       mongodb_database: "pokemon-dev",
       NEXTAUTH_SECRET: 'pokemon-secret',
-      // base_url: 'https://pokemon-test.vercel.app/',
+      base_url: 'https://poketest.agsys.online/',
     },
     images: {
       remotePatterns: [

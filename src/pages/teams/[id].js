@@ -73,7 +73,7 @@ export default function TeamDetails() {
     return (
         <>
             <Head>
-                <title>Pokemon Test - Teams</title>
+                <title>Pokemon Test - Teams ({name})</title>
                 <meta name="description" content="Pokemon Test"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="logo.png"/>

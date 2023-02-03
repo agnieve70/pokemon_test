@@ -47,7 +47,7 @@ export default function RegisterPage() {
         <>
             <Head>
                 <title>Pokemon Test</title>
-                <meta name="description" content="Pokemon Test"/>
+                <meta name="description" content="Pokemon Test - Registration"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="logo.png"/>
             </Head>
