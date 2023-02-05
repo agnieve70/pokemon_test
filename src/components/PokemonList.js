@@ -9,7 +9,7 @@ export default function PokemonList(props){
 
     return (
         pokemons.length > 0 ?
-            <div className={'w-full lg:pl-[18.5rem] lg:pr-[18.5rem] flex flex-col px-4 m-2'}>
+            <div className={'w-3/4 flex flex-col px-4 mt-5'}>
                 {
                     pokemons?.map((pokemon, index) => {
 
@@ -20,7 +20,7 @@ export default function PokemonList(props){
                             info_url={pokemon.url ? pokemon.url : pokemon.info_url}
                             image_url={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${(pokemon.id ? pokemon.id : (index) + currentData)}.png`}
                             name={pokemon.name}
-                            isFavorite={result ? result : []}
+                            isFavorite={result ? result : {}}
                         />)
                     })
                 }

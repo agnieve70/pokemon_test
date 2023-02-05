@@ -13,12 +13,11 @@ export default function PokemonGrid(props) {
 
     return (
         pokemons && pokemons.length > 0 ?
-            <div className={'w-full lg:pl-[18.5rem] flex px-2 flex-wrap flex-grow m-2'}>
+            <div className={'w-3/4 flex flex-wrap flex-grow mt-5'}>
                 {
                     pokemons?.map((pokemon, index) => {
 
                         const result = favorites?.find((favorite) => favorite.name === pokemon.name);
-                        console.log(result);
 
                         return (
                             <PokemonCard

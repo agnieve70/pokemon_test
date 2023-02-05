@@ -78,15 +78,15 @@ export default function TeamDetails() {
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="logo.png"/>
             </Head>
-            <div className={'flex items-center justify-center flex-col'}>
+            <div className={'flex items-center justify-center flex-col px-5'}>
                 <div className={''}>
                     <Image className={'h-auto w-auto mb-3'} alt={'header2'} src={'/header4-01.png'} width={400}
                            height={100}/>
                     <h1 className="text-2xl text-white text-center">{name}</h1>
                 </div>
-                <div className={'min-h-[39rem] w-3/4 mb-5 relative flex'}>
+                <div className={'min-h-[39rem] lg:w-3/4 w-full mx-2 mb-5 relative'}>
 
-                    <div className="w-1/4 h-[40rem] bg-white p-3 rounded-lg overflow-y-scroll relative">
+                    <div className="lg:w-1/4 w-full h-[40rem] bg-white p-3 rounded-lg overflow-y-scroll relative">
 
                         <div className={'flex'}>
                             <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder={'Search'}
@@ -138,8 +138,8 @@ export default function TeamDetails() {
                         </div>
 
                     </div>
-                    <div className={'w-3/4 px-5 flex m-3'}>
-                        {teamPokemons?.map((pokemon) => <div>
+                    <div className={'lg:w-3/4 w-full px-5 flex flex-wrap m-3'}>
+                        {teamPokemons?.map((pokemon, index) => <div key={index}>
                             <Image className={'animate-bounce-slow h-auto w-auto'} alt={'header2'}
                                    src={`${pokemon.image_url}`}
                                    width={200}

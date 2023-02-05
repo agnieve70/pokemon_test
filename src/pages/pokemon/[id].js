@@ -78,22 +78,22 @@ export default function PokemonDetail() {
                 <div className="w-full">
                     <h2 className={'text-3xl text-white text-center'}>Data Information</h2>
                 </div>
-                <div className="flex w-3/4">
+                <div className="flex lg:flex-row flex-col w-3/4">
                     {
                         <>
 
-                            <div className={'w-1/4 m-5 relative'}>
+                            <div className={'lg:w-1/4 w-full lg:m-5 m-2 relative'}>
                                 {
                                     atomUser && Object.keys(atomUser).length > 0 ? <button onClick={addRemoveHandler}>
                                         <StarIcon
                                             className={`h-8 hover:h-9 hover:w-9 w-8 ${fav ? 'text-yellow-300' : 'text-slate-300'}  absolute top-2 right-2`}/>
                                     </button> : null
                                 }
-                                <Image className={'animate-bounce-slow h-auto w-auto mt-5'} alt={'header2'}
+                                <Image className={'animate-bounce-slow h-auto lg:w-auto w-full mt-5'} alt={'header2'}
                                        src={thisPokemon?.sprites ? thisPokemon.sprites.other['official-artwork'].front_default : '/loading-01.png'}
                                        width={350} height={100}/>
                             </div>
-                            <div className="w-1/4 m-5">
+                            <div className="lg:w-1/4 w-full m-5">
 
                                 <p className={'text-lg text-slate-500 mt-3'}>Exp <span
                                     className={'text-white'}>{thisPokemon?.base_experience}</span></p>
@@ -115,7 +115,7 @@ export default function PokemonDetail() {
                                     </p>)
                                 }
                             </div>
-                            <div className="w-1/4 m-5">
+                            <div className="lg:w-1/4 w-full m-5">
 
                                 <p className={'text-lg text-slate-500 mt-3'}>Stats</p>
                                 <table className={'text-white'}>
@@ -138,7 +138,7 @@ export default function PokemonDetail() {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className="w-1/6 m-5">
+                            <div className="lg:w-1/6 w-full m-5">
                                 <p className={'text-lg text-slate-500 mt-3'}>Moves</p>
                                 {
                                     thisPokemon?.moves?.map((move, index) => {

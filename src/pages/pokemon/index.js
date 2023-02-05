@@ -100,8 +100,8 @@ export default function HomePage() {
             </Head>
             <div className={'min-h-[39rem] flex items-center justify-center flex-col'}>
                 <Image className={'h-auto w-auto'} alt={'header2'} src={'/header2-01.png'} width={500} height={150}/>
-                <div className={`w-3/4 flex lg:px-14 justify-between`}>
-                    <div className={'flex items-center justify-center lg:w-1/3 w-3/4'}>
+                <div className={`w-3/4 flex justify-between`}>
+                    <div className={'flex items-center lg:w-1/3 w-3/4'}>
                         <input placeholder={'Search for Pokemon'} className={'h-10 px-3 rounded-lg w-full mr-2'}
                                value={search}
                                onChange={(e) => setSearch(e.target.value)}/>
@@ -124,7 +124,7 @@ export default function HomePage() {
                 {isGrid ? <PokemonGrid favorites={favoritePokemons} pokemons={pokemons} page={page}/> :
                     <PokemonList favorites={favoritePokemons} pokemons={pokemons} page={page}/>}
 
-                <div className={'w-3/4 lg:px-14 flex justify-between mb-5'}>
+                <div className={'w-3/4 flex justify-between mb-5'}>
                     <button className={``} disabled={prevUrl ? false : true} onClick={() => {
                         setCurrentUrl(prevUrl);
                         setPage(prev => prev - 1);
