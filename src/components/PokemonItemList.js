@@ -16,10 +16,10 @@ export default function PokemonItemList(props) {
 
     useEffect(() => {
         setFav(isFavorite);
-    }, [isFavorite]);
+    }, []);
 
     async function addRemoveHandler() {
-        setFav(true);
+        setFav({name, image_url, info_url});
         const result = await addRemoveFavorite({image_url, name, info_url});
         if (result) {
             getFavorites().then((result) => {
@@ -30,12 +30,13 @@ export default function PokemonItemList(props) {
 
     return (
         <div
-            className={'flex items-center relative w-full rounded-lg bg-white mb-3 cursor-pointer hover:shadow-2xl hover:border-2 border-yellow-200 hover:text-yellow-400'}>
+            className={'w-full relative rounded-lg bg-white m-1 cursor-pointer hover:shadow-2xl hover:border-2 border-yellow-200 hover:text-yellow-400'}>
             {
                 atomUser && Object.keys(atomUser).length > 0 ? <button onClick={addRemoveHandler}>
                     <StarIcon
-                        className={`h-8 hover:h-9 hover:w-9 w-8 ${Object.keys(isFavorite).length > 0 || Object.keys(fav).length > 0 ? 'text-yellow-300' : 'text-slate-300'}  absolute top-2 left-2`}/>
+                        className={`h-8 hover:h-9 hover:w-9 w-8 ${Object.keys(isFavorite).length > 0 || Object.keys(fav).length > 0 ? 'text-yellow-300' : 'text-slate-300'}  absolute top-2 left-2 z-20`}/>
                 </button> : null
+
             }
             <Link
                 className={`flex items-center w-full`}
