@@ -31,18 +31,19 @@ export default function PokemonItemList(props) {
     return (
         <div
             className={'flex items-center w-full rounded-lg bg-white mb-3 cursor-pointer hover:shadow-2xl hover:border-2 border-yellow-200 hover:text-yellow-400'}>
+            {
+                atomUser && Object.keys(atomUser).length > 0 ? <button onClick={addRemoveHandler}>
+                    <StarIcon
+                        className={`h-8 hover:h-9 hover:w-9 w-8 ${Object.keys(isFavorite).length > 0 || Object.keys(fav).length > 0 ? 'text-yellow-300' : 'text-slate-300'}  absolute top-2 left-2`}/>
+                </button> : null
+            }
             <Link
                 className={`flex items-center w-full`}
                 href={`/pokemon/${name} ${Object.keys(isFavorite).length > 0 || Object.keys(fav).length > 0 ? '?favorite=true' : ''}`}>
 
                 <div
                     className={'relative h-56 w-56 px-10 py-3 overflow-hidden flex items-start justify-center'}>
-                    {
-                        atomUser && Object.keys(atomUser).length > 0 ? <button onClick={addRemoveHandler}>
-                            <StarIcon
-                                className={`h-8 hover:h-9 hover:w-9 w-8 ${Object.keys(isFavorite).length > 0 || Object.keys(fav).length > 0 ? 'text-yellow-300' : 'text-slate-300'}  absolute top-2 left-2`}/>
-                        </button> : null
-                    }
+
                     <Image
                         className={'h-auto w-auto'}
                         alt={name}
