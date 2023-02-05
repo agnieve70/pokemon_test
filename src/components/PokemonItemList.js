@@ -30,7 +30,7 @@ export default function PokemonItemList(props) {
 
     return (
         <div
-            className={'flex items-center w-full rounded-lg bg-white mb-3 cursor-pointer hover:shadow-2xl hover:border-2 border-yellow-200 hover:text-yellow-400'}>
+            className={'flex items-center relative w-full rounded-lg bg-white mb-3 cursor-pointer hover:shadow-2xl hover:border-2 border-yellow-200 hover:text-yellow-400'}>
             {
                 atomUser && Object.keys(atomUser).length > 0 ? <button onClick={addRemoveHandler}>
                     <StarIcon
