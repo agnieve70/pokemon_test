@@ -1,4 +1,5 @@
 import PokemonCard from "@/components/PokemonCard";
+import {useEffect} from "react";
 
 export default function PokemonGrid(props) {
 
@@ -6,6 +7,9 @@ export default function PokemonGrid(props) {
 
     const currentData = page !== 1 ? (page - 1) * 20 : page;
 
+    useEffect(()=> {
+
+    },[pokemons, favorites]);
 
     return (
         pokemons && pokemons.length > 0 ?
