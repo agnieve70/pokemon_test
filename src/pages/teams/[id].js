@@ -84,7 +84,7 @@ export default function TeamDetails() {
                            height={100}/>
                     <h1 className="text-2xl text-white text-center">{name}</h1>
                 </div>
-                <div className={'min-h-[39rem] lg:w-3/4 w-full mx-2 mb-5 flex'}>
+                <div className={'min-h-[39rem] lg:w-3/4 w-full mx-2 mb-5 flex lg:flex-row flex-col'}>
 
                     <div className="lg:w-1/4 w-full h-[40rem] bg-white p-3 rounded-lg overflow-y-scroll relative">
 
