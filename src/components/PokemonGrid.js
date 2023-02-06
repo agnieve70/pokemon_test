@@ -23,7 +23,7 @@ export default function PokemonGrid(props) {
                             <PokemonCard
                                 key={index}
                                 info_url={pokemon.url ? pokemon.url : pokemon.info_url}
-                                image_url={pokemon.image_url ? pokemon.image_url : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${(pokemon.id ? pokemon.id : (index) + currentData)}.png`}
+                                image_url={pokemon.image_url ? pokemon.image_url : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${(pokemon.id ? pokemon.id : (page !== 1 ? index + 1 : index) + currentData)}.png`}
                                 name={pokemon.name}
                                 isFavorite={result ? result : {}}
                             />
