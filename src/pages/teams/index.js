@@ -16,6 +16,7 @@ export default function TeamsPage(props) {
     const [modalOpen, setModalOpen] = useState(false);
     const [name, setName] = useState('');
     const [addedTeam, setAddedTeam] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const router = useRouter();
 
@@ -34,9 +35,10 @@ export default function TeamsPage(props) {
 
     useEffect(() => {
         (async () => {
-            myTeams().then((result) => {
-                setAtomTeams(result);
-            });
+            setIsLoading(true);
+            const result = await myTeams();
+            setAtomTeams(result);
+            setIsLoading(false);
         })();
     }, [addedTeam]);
 
@@ -49,7 +51,7 @@ export default function TeamsPage(props) {
         setModalOpen(false);
     }
 
-    async function removeTeamHandler(id){
+    async function removeTeamHandler(id) {
         const result = await deleteTeam(id);
         setAddedTeam(result);
     }
@@ -92,24 +94,32 @@ export default function TeamsPage(props) {
                                 className={`m-2 h-20 w-20 text-white`}/>
                         </button>
                         {
-                            atomTeams && atomTeams.length > 0 ?  atomTeams?.map((team, index) => {
-                                return (
-                                    <div
-                                        key={index}
-                                        className={'relative m-2 lg:w-1/5 w-full bg-slate-800 rounded-lg hover:shadow-lg hover:border-2 border-slate-700'}>
-                                        <button onClick={removeTeamHandler.bind(this, team._id)}>
-                                            <XMarkIcon
-                                                className={`m-2 h-6 w-6 text-slate-900 absolute top-0 right-0`}/>
-                                        </button>
-                                        <Link href={`/teams/${team._id}?name=${team.name}`}
-                                              className={'py-10 flex items-start justify-center w-full h-full'}>
-                                            <h1 className={'text-2xl text-white'}>{team.name}</h1>
-                                        </Link>
-                                    </div>
-                                );
-                            }) : <div className={''}>
-                                <p className={'text-white m-20'}>No Pokemon available</p>
-                            </div>
+                            isLoading ?
+                                <div className="flex items-center justify-center">
+                                    <Image className={'animate-bounce-slow h-auto lg:w-auto w-full mt-5'}
+                                           alt={'loading'}
+                                           src={'/loading-01.png'}
+                                           width={350} height={100}/>
+                                </div>
+                                :
+                                atomTeams && atomTeams.length > 0 ? atomTeams?.map((team, index) => {
+                                    return (
+                                        <div
+                                            key={index}
+                                            className={'relative m-2 lg:w-1/5 w-full bg-slate-800 rounded-lg hover:shadow-lg hover:border-2 border-slate-700'}>
+                                            <button onClick={removeTeamHandler.bind(this, team._id)}>
+                                                <XMarkIcon
+                                                    className={`m-2 h-6 w-6 text-slate-900 absolute top-0 right-0`}/>
+                                            </button>
+                                            <Link href={`/teams/${team._id}?name=${team.name}`}
+                                                  className={'py-10 flex items-start justify-center w-full h-full'}>
+                                                <h1 className={'text-2xl text-white'}>{team.name}</h1>
+                                            </Link>
+                                        </div>
+                                    );
+                                }) : <div className={''}>
+                                    <p className={'text-white m-20'}>No Pokemon available</p>
+                                </div>
                         }
                     </div>
                 </div>

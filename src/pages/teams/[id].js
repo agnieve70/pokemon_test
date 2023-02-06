@@ -17,6 +17,7 @@ export default function TeamDetails() {
     const [pokemons, setPokemons] = useState(pokemon_backup);
     const [teamPokemons, setTeamPokemons] = useState([]);
     const [monitorChange, setMonitorChange] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const router = useRouter();
     const {id, name} = router.query;
@@ -34,9 +35,12 @@ export default function TeamDetails() {
 
     useEffect(() => {
         if (id) {
-            myPokemonTeam(id).then((team_pokemons) => {
-                setTeamPokemons(team_pokemons);
-            });
+            (async () => {
+                setIsLoading(true);
+                const result = await myPokemonTeam(id);
+                setTeamPokemons(result);
+                setIsLoading(false);
+            })();
         }
 
     }, [router, monitorChange]);
@@ -97,29 +101,36 @@ export default function TeamDetails() {
                         </div>
 
                         {
-                            pokemons.map((pokemon, index) => {
-                                if (index + 1 >= moveNumber && index + 1 < moveNumber + 5) {
-                                    return (<div
-                                        key={index}
-                                        className={'flex items-center justify-between shadow-lg bg-slate-100 rounded-lg mt-3 overflow-hidden'}>
-                                        <div className={'w-1/2 h-auto'}>
-                                            <Image className={'h-auto w-auto'} alt={'header2'}
-                                                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${(index + 1)}.png`}
-                                                   width={65}
-                                                   height={100}/>
-                                        </div>
-                                        <h1 className={'text-lg'}>{pokemon.name}</h1>
-                                        <button onClick={addTeamPokemonHandler.bind(this, {
-                                            name: pokemon.name,
-                                            info_url: pokemon.url,
-                                            image_url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${(index + 1)}.png`
-                                        })}>
-                                            <ChevronRightIcon
-                                                className={`h-7 w-7  ${moveNumber <= pokemon_backup?.length ? 'text-slate-300 hover:h-8 hover:w-8' : 'text-slate-300'}`}/>
-                                        </button>
-                                    </div>);
-                                }
-                            })
+                           isLoading ?
+                               <div className="flex items-center justify-center">
+                                   <Image className={'animate-bounce-slow h-auto lg:w-auto w-full mt-5'} alt={'loading'}
+                                          src={'/loading-01.png'}
+                                          width={350} height={100}/>
+                               </div>
+                               :
+                               pokemons.map((pokemon, index) => {
+                                   if (index + 1 >= moveNumber && index + 1 < moveNumber + 5) {
+                                       return (<div
+                                           key={index}
+                                           className={'flex items-center justify-between shadow-lg bg-slate-100 rounded-lg mt-3 overflow-hidden'}>
+                                           <div className={'w-1/2 h-auto'}>
+                                               <Image className={'h-auto w-auto'} alt={'header2'}
+                                                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${(index + 1)}.png`}
+                                                      width={65}
+                                                      height={100}/>
+                                           </div>
+                                           <h1 className={'text-lg'}>{pokemon.name}</h1>
+                                           <button onClick={addTeamPokemonHandler.bind(this, {
+                                               name: pokemon.name,
+                                               info_url: pokemon.url,
+                                               image_url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${(index + 1)}.png`
+                                           })}>
+                                               <ChevronRightIcon
+                                                   className={`h-7 w-7  ${moveNumber <= pokemon_backup?.length ? 'text-slate-300 hover:h-8 hover:w-8' : 'text-slate-300'}`}/>
+                                           </button>
+                                       </div>);
+                                   }
+                               })
                         }
 
                         <div className={'mt-2 bottom-5 w-full'}>

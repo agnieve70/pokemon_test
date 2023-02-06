@@ -29,6 +29,7 @@ export default function HomePage() {
     const [search, setSearch] = useState("");
     const [isGrid, setIsGrid] = useState(true);
     const [page, setPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
 
@@ -42,17 +43,19 @@ export default function HomePage() {
 
     useEffect(() => {
         (async () => {
-            getFavorites().then((result) => {
+            setIsLoading(true);
 
-                setFavoritePokemons(result);
-                setAtomFavoritePokemons(result);
-            });
+            const result1 = await getFavorites();
+            const result2 = await getAllPokemon(currentUrl);
 
-            getAllPokemon(currentUrl).then((result) => {
-                setPokemons(result.results);
-                setNextUrl(result.next);
-                setPrevUrl(result.previous);
-            });
+            setFavoritePokemons(result1);
+            setAtomFavoritePokemons(result1);
+            setPokemons(result2.results);
+            setNextUrl(result2.next);
+            setPrevUrl(result2.previous);
+
+            setIsLoading(false);
+
         })();
     }, [currentUrl]);
 
@@ -121,8 +124,14 @@ export default function HomePage() {
                         </button>
                     </div>
                 </div>
-                {isGrid ? <PokemonGrid favorites={favoritePokemons} pokemons={pokemons} page={page}/> :
-                    <PokemonList favorites={favoritePokemons} pokemons={pokemons} page={page}/>}
+                {isLoading ? <div className="flex items-center justify-center">
+                        <Image className={'animate-bounce-slow h-auto lg:w-auto w-full mt-5'} alt={'loading'}
+                               src={'/loading-01.png'}
+                               width={350} height={100}/>
+                    </div>
+                    : isGrid ?
+                        <PokemonGrid favorites={favoritePokemons} pokemons={pokemons} page={page}/> :
+                        <PokemonList favorites={favoritePokemons} pokemons={pokemons} page={page}/>}
 
                 <div className={'w-3/4 flex justify-between mb-5'}>
                     <button className={``} disabled={prevUrl ? false : true} onClick={() => {
