@@ -95,7 +95,7 @@ export default function TeamsPage(props) {
                         </button>
                         {
                             isLoading ?
-                                <div className="flex items-center justify-center">
+                                <div className="min-h-[52rem] flex items-center justify-center">
                                     <Image className={'animate-bounce-slow h-auto lg:w-auto w-full mt-5'}
                                            alt={'loading'}
                                            src={'/loading-01.png'}
