@@ -36,7 +36,7 @@ export default function FavoritesPage(props) {
     useEffect(() => {
         (async () => {
             setIsLoading(true);
-            const result = getFavorites();
+            const result = await getFavorites();
             setFavoritePokemons(result);
             setIsLoading(false);
         })();
