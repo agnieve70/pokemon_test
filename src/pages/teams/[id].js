@@ -101,36 +101,29 @@ export default function TeamDetails() {
                         </div>
 
                         {
-                           isLoading ?
-                               <div className="flex items-center justify-center">
-                                   <Image className={'animate-bounce-slow h-auto lg:w-auto w-full mt-5'} alt={'loading'}
-                                          src={'/loading-01.png'}
-                                          width={350} height={100}/>
-                               </div>
-                               :
-                               pokemons.map((pokemon, index) => {
-                                   if (index + 1 >= moveNumber && index + 1 < moveNumber + 5) {
-                                       return (<div
-                                           key={index}
-                                           className={'flex items-center justify-between shadow-lg bg-slate-100 rounded-lg mt-3 overflow-hidden'}>
-                                           <div className={'w-1/2 h-auto'}>
-                                               <Image className={'h-auto w-auto'} alt={'header2'}
-                                                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${(index + 1)}.png`}
-                                                      width={65}
-                                                      height={100}/>
-                                           </div>
-                                           <h1 className={'text-lg'}>{pokemon.name}</h1>
-                                           <button onClick={addTeamPokemonHandler.bind(this, {
-                                               name: pokemon.name,
-                                               info_url: pokemon.url,
-                                               image_url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${(index + 1)}.png`
-                                           })}>
-                                               <ChevronRightIcon
-                                                   className={`h-7 w-7  ${moveNumber <= pokemon_backup?.length ? 'text-slate-300 hover:h-8 hover:w-8' : 'text-slate-300'}`}/>
-                                           </button>
-                                       </div>);
-                                   }
-                               })
+                            pokemons.map((pokemon, index) => {
+                                if (index + 1 >= moveNumber && index + 1 < moveNumber + 5) {
+                                    return (<div
+                                        key={index}
+                                        className={'flex items-center justify-between shadow-lg bg-slate-100 rounded-lg mt-3 overflow-hidden'}>
+                                        <div className={'w-1/2 h-auto'}>
+                                            <Image className={'h-auto w-auto'} alt={'header2'}
+                                                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${(index + 1)}.png`}
+                                                   width={65}
+                                                   height={100}/>
+                                        </div>
+                                        <h1 className={'text-lg'}>{pokemon.name}</h1>
+                                        <button onClick={addTeamPokemonHandler.bind(this, {
+                                            name: pokemon.name,
+                                            info_url: pokemon.url,
+                                            image_url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${(index + 1)}.png`
+                                        })}>
+                                            <ChevronRightIcon
+                                                className={`h-7 w-7  ${moveNumber <= pokemon_backup?.length ? 'text-slate-300 hover:h-8 hover:w-8' : 'text-slate-300'}`}/>
+                                        </button>
+                                    </div>);
+                                }
+                            })
                         }
 
                         <div className={'mt-2 bottom-5 w-full'}>
@@ -150,13 +143,20 @@ export default function TeamDetails() {
 
                     </div>
                     <div className={'lg:w-3/4 w-full px-5 flex flex-wrap m-3'}>
-                        {teamPokemons?.map((pokemon, index) => <div key={index}>
-                            <Image className={'animate-bounce-slow h-auto w-auto'} alt={'header2'}
-                                   src={`${pokemon.image_url}`}
-                                   width={200}
-                                   height={100}/>
-                            <p className={'text-white text-center'}>{pokemon.name?.charAt(0).toUpperCase() + pokemon.name?.slice(1)}</p>
-                        </div>)}
+                        { isLoading ?
+                            <div className="flex items-center justify-center">
+                                <Image className={'animate-bounce-slow h-auto lg:w-auto w-full mt-5'} alt={'loading'}
+                                       src={'/loading-01.png'}
+                                       width={350} height={100}/>
+                            </div>
+                        :
+                            teamPokemons?.map((pokemon, index) => <div key={index}>
+                                <Image className={'animate-bounce-slow h-auto w-auto'} alt={'header2'}
+                                       src={`${pokemon.image_url}`}
+                                       width={200}
+                                       height={100}/>
+                                <p className={'text-white text-center'}>{pokemon.name?.charAt(0).toUpperCase() + pokemon.name?.slice(1)}</p>
+                            </div>)}
                     </div>
 
                 </div>
