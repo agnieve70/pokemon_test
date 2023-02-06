@@ -17,6 +17,7 @@ export default function FavoritesPage(props) {
     const [favoritePokemons, setFavoritePokemons] = useAtom(favorites);
     const [isGrid, setIsGrid] = useState(true);
     const [page, setPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
 
     const router = useRouter();
 
@@ -34,9 +35,10 @@ export default function FavoritesPage(props) {
 
     useEffect(() => {
         (async () => {
-            getFavorites().then((result) => {
-                setFavoritePokemons(result);
-            });
+            setIsLoading(true);
+            const result = getFavorites();
+            setFavoritePokemons(result);
+            setIsLoading(false);
         })();
     }, []);
 
@@ -52,8 +54,15 @@ export default function FavoritesPage(props) {
                 <div className={'flex items-center flex-col'}>
                     <Image className={'h-auto w-auto mb-3'} alt={'header2'} src={'/header3-01.png'} width={500}
                            height={150}/>
-                    {isGrid ? <PokemonGrid favorites={favoritePokemons} pokemons={favoritePokemons} page={page}/> :
-                        <PokemonList pokemons={favoritePokemons} page={page}/>}
+                    {isLoading ?
+                        <div className="flex items-center justify-center">
+                            <Image className={'animate-bounce-slow h-auto lg:w-auto w-full mt-5'} alt={'loading'}
+                                   src={'/loading-01.png'}
+                                   width={350} height={100}/>
+                        </div>
+                        :
+                        isGrid ? <PokemonGrid favorites={favoritePokemons} pokemons={favoritePokemons} page={page}/> :
+                            <PokemonList pokemons={favoritePokemons} page={page}/>}
                 </div>
             </div>
         </>
