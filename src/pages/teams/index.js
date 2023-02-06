@@ -69,7 +69,7 @@ export default function TeamsPage(props) {
                     <Image className={'h-auto w-auto mb-3'} alt={'header2'} src={'/header4-01.png'} width={500}
                            height={150}/>
                 </div>
-                <div className={'min-h-[39rem] w-3/4 relative'}>
+                <div className={'min-h-[52rem] w-3/4 relative'}>
 
                     <div
                         className={`w-1/4 absolute transform translate-x-1/2 left-1/4  bg-white z-20 rounded-2xl p-5 shadow-2xl ${!modalOpen ? 'hidden' : ''}`}>
@@ -99,7 +99,7 @@ export default function TeamsPage(props) {
                                     <Image className={'animate-bounce-slow h-auto lg:w-auto w-full mt-5'}
                                            alt={'loading'}
                                            src={'/loading-01.png'}
-                                           width={100} height={100}/>
+                                           width={120} height={100}/>
                                 </div>
                                 :
                                 atomTeams && atomTeams.length > 0 ? atomTeams?.map((team, index) => {
