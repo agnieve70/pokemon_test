@@ -99,7 +99,7 @@ export default function TeamsPage(props) {
                                     <Image className={'animate-bounce-slow h-auto lg:w-auto w-full mt-5'}
                                            alt={'loading'}
                                            src={'/loading-01.png'}
-                                           width={150} height={100}/>
+                                           width={100} height={100}/>
                                 </div>
                                 :
                                 atomTeams && atomTeams.length > 0 ? atomTeams?.map((team, index) => {
